@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NaganoCake1</title>
+    <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,59 @@
   </head>
 
   <body>
+     <% if customer_signed_in? %>
+      <li>
+        <%= link_to "public/items" do %>
+        <span>商品一覧</span>
+         <% end %>
+      </li>
+      <li >
+         <%= link_to destroy_customer_session_path, method: :delete do %>
+         <span > ログアウト</span>
+          <% end %>
+     </li>
+    <% elsif admin_signed_in? %>
+     <li>
+        <%= link_to "/admin/items"  do %>
+        <span > 商品一覧</span>
+       <% end %>
+     </li>
+     <li>
+        <%= link_to "/admin/genres"  do %>
+        <span > ジャンル一覧</span>
+        <% end %>
+     </li>
+     <li >
+         <%= link_to destroy_admin_session_path, method: :delete do %>
+         <span > ログアウト</span>
+          <% end %>
+     </li>
+
+     <% else %>
+          <li>
+             <%= link_to "/public/items" do %>
+             <span >商品一覧</span>
+              <% end %>
+          </li>
+          <li >
+            <%= link_to "/public/about" do %>
+            <span>About</span>
+             <% end %>
+          </li>
+          <li>
+             <%= link_to new_customer_registration_path do %>
+             <span> 新規登録</span>
+              <% end %>
+          </li>
+          <li >
+            <%= link_to new_customer_session_path do %>
+            <span>ログイン</span>
+             <% end %>
+          </li>
+    <% end %>
+    <footer>
+
+    </footer>
     <%= yield %>
   </body>
 </html>
