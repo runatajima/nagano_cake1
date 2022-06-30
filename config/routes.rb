@@ -8,6 +8,8 @@ root "public/homes#top"
    end
 
 namespace :public do
+   patch '/members/withdrawal' => 'members#destroy'
+   get '/members/withdrawal' => 'members#withdrawal'
    patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
    get 'show' => 'customers#show'
    get 'customers/edit' => 'customers#edit'
@@ -15,6 +17,7 @@ namespace :public do
    get 'edit' => 'customers#edit'
    get 'orders/new' => 'orders#about', as: 'orders_about'
    get 'orders/complete' => 'orders#complete'
+   get '/homes/about' => 'homes#about'
    resources :orders, only: [:create, :new, :index, :show]
    resources :items, only: [:show, :index]
    resources :cart_items, only: [:index, :create, :update, :destroy]
@@ -29,7 +32,7 @@ namespace :admin do
    resources :genres, only: [:index, :create, :edit, :update]
    resources :items, only: [:show,  :new, :create, :edit, :update, :index]
    resources :orders, only: [:index, :show, :update]
-   resources :order_details, only: [:update]
+   resources :orders_details, only: [:update]
   end
 
 

@@ -15,26 +15,25 @@
   <tbody>
 
     <tr>
-      <tr>商品名</tr>
+      <th>商品名</th>
       <td><%= @item.name %></td>
 
     </tr>
     <tr>
-      <tr>ジャンル</tr>
+      <th>ジャンル</th>
        <td><%= @item.genre.name %></td>
     </tr>
     <tr>
-      <tr>
-        <div>
-          税込価格<br>
-          (税抜価格)
-        </div>
-      </tr>
+      <th>
+          <div>
+           税込価格<br>(税抜価格)
+          </div>
+      </th>
       <td><%= @item.add_tax_price.to_s(:dalimited) %>,（<%= @item.price %>）円</td>
 
     </tr>
     <tr>
-      <tr>販売ステータス</tr>
+      <th>販売ステータス</th>
       <td><% if @item.is_active == false %>
               販売中
               <% else %>

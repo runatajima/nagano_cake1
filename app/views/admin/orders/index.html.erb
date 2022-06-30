@@ -1,22 +1,18 @@
-<h2>管理者画面</h2>
-
-<div>
-    <%= link_to "注文履歴一覧", admin_orders_path %>
-
-	<%= form_for @orders, url:admin_orders_path do |f| %>
+<div class="pull-right">
+	<%= form_for(@orders, url:admin_orders_path) do |f| %>
 		<%= f.label :name, "注文履歴キーワード" %>
-		<%= f.field :name_cont %>
+		<%= f.search_field :name_cont %>
 		<%= f.submit %>
 	<% end %>
 </div>
 
-  <div>
-    <div>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
       <h2>注文一覧</h2>
 
 
-    <div>
-      <table>
+    <div class="order-table">
+      <table class="table">
         <thead>
           <tr>
             <th>購入日時</th>
@@ -29,7 +25,7 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_orders_path(order) %></td>
+              <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"), admin_order_url(order) %></td>
               <td><%= order.customer.last_name + " " + order.customer.first_name %></td>
               <td><%= order.order_details.sum(:quantity) %></td>
               <td><%= order.order_status %></td>

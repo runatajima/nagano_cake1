@@ -1,11 +1,11 @@
 <h2>会員情報編集</h2>
 
-  <%= form_with(@customer, url: admin_customer_path) do |f| %>
 
+<%= form_with model: @customer , url: admin_customer_url  do |f| %>
   <table class="row table">
     <tr>
-      <th class="col-xs-2"><%= f.label :会員ID %></th>
-      <td class="col-xs-10"><%= f.text_field :id  , class:"form-control"%></td>
+      <th class="col-xs-2">会員ID </th>
+      <td><%= @customer.id %></td>
     </tr>
 
     <tr>
@@ -18,7 +18,7 @@
     <tr>
       <th><%= f.label :フリガナ %></th>
       <td><%= f.text_field :last_name_kana, class:"form-control" %><br>
-      <%= f.text_field :first_name_kana, class:"form-control" %>
+          <%= f.text_field :first_name_kana, class:"form-control" %>
       </td>
     </tr>
 

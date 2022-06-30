@@ -1,2 +1,24 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div>
+  <h4>
+  このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。<br>
+  </h4>
+
+</div>
+
+<div>
+  <% @items.last(4).each do |item| %>
+        <%= link_to item_path(item.id), data: {"turbolinks" => false} do %>
+        <% if item.image.attached? %>
+          <%= image_tag item.image, size: "180×125" %>
+         <% else %>
+          <%= image_tag 'no_image', size: "180×125" %>
+         <% end %><br>
+         <%= item.name %><br>
+         ¥<%= item.price.to_s(:delimited, delimiter: ',') %>
+        <% end %>
+       </div>
+   <% end %>
+   <h3><%= link_to "すべての商品を見る", public_items_path %></h3>
+</div>
